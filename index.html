@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High Quality Ticket Generator</title>
+    <title>Light Color Ticket Generator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -15,7 +14,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,134 +25,159 @@
         .container {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             overflow: hidden;
+            border: 1px solid #e8eaed;
         }
 
         .header {
-            background: linear-gradient(to right, #2c3e50, #4a6491);
+            background: linear-gradient(to right, #6a89cc, #4a69bd);
             color: white;
-            padding: 30px;
+            padding: 25px 30px;
             text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .content {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 0;
-        }
-
-        .input-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 40px;
-            background: #f8f9fa;
-        }
-
-        .preview-section {
-            flex: 1;
-            min-width: 300px;
-            padding: 40px;
-            background: white;
-            border-left: 2px dashed #dee2e6;
-        }
-
-        .section-title {
-            color: #2c3e50;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #3498db;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #34495e;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-
-        input:focus, select:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            outline: none;
-        }
-
-        .ticket-preview {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.08);
-            border: 3px solid #3498db;
             position: relative;
             overflow: hidden;
         }
 
-        .ticket-preview::before {
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(to right, #e74c3c, #3498db, #2ecc71);
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+            background-size: cover;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 500px;
+        }
+
+        .input-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 35px;
+            background: #f8fafc;
+            border-right: 1px solid #e8eaed;
+        }
+
+        .preview-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 35px;
+            background: white;
+        }
+
+        .section-title {
+            color: #4a5568;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 20px;
+            background: #6a89cc;
+            border-radius: 3px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: white;
+            color: #2d3748;
+        }
+
+        input:focus, select:focus {
+            border-color: #6a89cc;
+            box-shadow: 0 0 0 3px rgba(106, 137, 204, 0.1);
+            outline: none;
+        }
+
+        .ticket-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1.5px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .ticket-preview:hover {
+            border-color: #c3cfe2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         .ticket-header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #e2e8f0;
         }
 
         .ticket-header h2 {
-            color: #2c3e50;
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
+            color: #4a69bd;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
         .ticket-header p {
-            color: #7f8c8d;
-            font-style: italic;
+            color: #718096;
+            font-size: 0.9rem;
         }
 
         .ticket-details {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid #eee;
+            margin-bottom: 20px;
         }
 
         .detail-row {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
-            border-bottom: 1px dashed #ecf0f1;
+            border-bottom: 1px dashed #e2e8f0;
         }
 
         .detail-row:last-child {
@@ -161,143 +185,241 @@
         }
 
         .detail-label {
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: 500;
+            color: #4a5568;
+            font-size: 0.95rem;
         }
 
         .detail-value {
-            color: #e74c3c;
-            font-weight: 700;
-            font-size: 1.1rem;
+            color: #2d3748;
+            font-weight: 500;
+            font-size: 1rem;
         }
 
         .seat-price {
             display: flex;
             justify-content: space-between;
-            background: #2c3e50;
-            color: white;
-            padding: 15px;
+            background: linear-gradient(to right, #f8fafc, #edf2f7);
+            padding: 15px 20px;
             border-radius: 10px;
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
+            margin-top: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .seat-price span {
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 1rem;
+        }
+
+        .seat-price .value {
+            color: #4a69bd;
+            font-size: 1.1rem;
+        }
+
+        .theme-colors {
+            margin: 25px 0;
+        }
+
+        .theme-title {
+            font-weight: 500;
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .color-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .color-btn.active {
+            transform: scale(1.1);
+            border: 2px solid #4a69bd;
         }
 
         .quality-settings {
-            margin-top: 30px;
+            margin: 25px 0;
         }
 
         .quality-options {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .quality-btn {
             flex: 1;
-            padding: 15px;
-            background: #ecf0f1;
-            border: 2px solid #bdc3c7;
-            border-radius: 10px;
+            padding: 12px;
+            background: white;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
             text-align: center;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #4a5568;
             transition: all 0.3s;
         }
 
         .quality-btn:hover {
-            background: #3498db;
-            color: white;
-            border-color: #3498db;
+            background: #f7fafc;
+            border-color: #c3cfe2;
         }
 
         .quality-btn.active {
-            background: #2ecc71;
+            background: #6a89cc;
             color: white;
-            border-color: #27ae60;
+            border-color: #6a89cc;
         }
 
         .quality-note {
-            margin-top: 10px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            margin-top: 8px;
+            color: #718096;
+            font-size: 0.85rem;
             text-align: center;
         }
 
         .generate-btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             width: 100%;
-            background: linear-gradient(to right, #2ecc71, #27ae60);
+            background: linear-gradient(to right, #6a89cc, #4a69bd);
             color: white;
             border: none;
-            padding: 20px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-radius: 12px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 10px;
             cursor: pointer;
-            margin-top: 40px;
-            transition: all 0.3s;
-            letter-spacing: 1px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
         }
 
         .generate-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(106, 137, 204, 0.3);
+            background: linear-gradient(to right, #5a79bc, #3a59ad);
         }
 
         .generate-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
 
         .ticket-footer {
             text-align: center;
-            margin-top: 30px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            margin-top: 25px;
+            color: #718096;
+            font-size: 0.85rem;
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .ticket-footer p {
+            margin-bottom: 5px;
         }
 
         .success-message {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #2ecc71;
+            background: #38b2ac;
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             display: none;
             z-index: 1000;
-            font-weight: 600;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .ticket-id {
+            background: #f8fafc;
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #718096;
+            border: 1px dashed #e2e8f0;
+        }
+
+        .ticket-id span {
+            color: #4a69bd;
+            font-weight: 500;
         }
 
         @media (max-width: 768px) {
             .content {
                 flex-direction: column;
             }
-            .preview-section {
-                border-left: none;
-                border-top: 2px dashed #dee2e6;
+            .input-section {
+                border-right: none;
+                border-bottom: 1px solid #e8eaed;
             }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .info-tip {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: #e2e8f0;
+            color: #718096;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 11px;
+            line-height: 16px;
+            margin-left: 5px;
+            cursor: help;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚌 High Quality Ticket Generator</h1>
-            <p>Create and download tickets in crystal clear PDF quality</p>
+            <h1>🎫 Ticket Generator</h1>
+            <p>Create and download high-quality PDF tickets instantly</p>
         </div>
 
         <div class="content">
             <!-- Input Section -->
             <div class="input-section">
-                <h2 class="section-title">📝 Passenger Information</h2>
+                <h2 class="section-title">Passenger Information</h2>
                 
                 <div class="form-group">
-                    <label for="passengerName">Passenger Name</label>
-                    <input type="text" id="passengerName" value="Shamsuuddin" placeholder="Enter full name">
+                    <label for="passengerName">Full Name</label>
+                    <input type="text" id="passengerName" value="Shamsuuddin" placeholder="Enter passenger name">
                 </div>
 
                 <div class="form-group">
@@ -312,7 +434,6 @@
                         <option value="B4">B4</option>
                         <option value="C1">C1</option>
                         <option value="D2">D2</option>
-                        <option value="E5">E5</option>
                     </select>
                 </div>
 
@@ -323,32 +444,42 @@
                         <option value="20">20</option>
                         <option value="25">25</option>
                         <option value="30">30</option>
-                        <option value="35">35</option>
                     </select>
                 </div>
 
+                <div class="theme-colors">
+                    <div class="theme-title">Theme Color</div>
+                    <div class="color-options">
+                        <div class="color-btn active" style="background: #6a89cc;" data-color="#6a89cc"></div>
+                        <div class="color-btn" style="background: #38b2ac;" data-color="#38b2ac"></div>
+                        <div class="color-btn" style="background: #ed8936;" data-color="#ed8936"></div>
+                        <div class="color-btn" style="background: #9f7aea;" data-color="#9f7aea"></div>
+                        <div class="color-btn" style="background: #f56565;" data-color="#f56565"></div>
+                    </div>
+                </div>
+
                 <div class="quality-settings">
-                    <h3 class="section-title">⚙️ PDF Quality Settings</h3>
+                    <div class="theme-title">PDF Quality</div>
                     <div class="quality-options">
-                        <div class="quality-btn active" data-quality="high">High Quality</div>
+                        <div class="quality-btn active" data-quality="high">High</div>
                         <div class="quality-btn" data-quality="medium">Medium</div>
                         <div class="quality-btn" data-quality="fast">Fast</div>
                     </div>
-                    <p class="quality-note">High Quality = Best for printing</p>
+                    <p class="quality-note">High quality recommended for printing</p>
                 </div>
 
                 <button class="generate-btn" id="generateBtn">
-                    📥 Generate & Download Ticket
+                    <span>📄</span> Generate PDF Ticket
                 </button>
             </div>
 
             <!-- Preview Section -->
             <div class="preview-section">
-                <h2 class="section-title">👁️ Ticket Preview</h2>
+                <h2 class="section-title">Ticket Preview</h2>
                 
                 <div class="ticket-preview" id="ticketPreview">
                     <div class="ticket-header">
-                        <h2>BUS TICKET</h2>
+                        <h2 id="previewTitle">BUS TICKET</h2>
                         <p>Premium Travel Service</p>
                     </div>
 
@@ -368,14 +499,18 @@
                     </div>
 
                     <div class="seat-price">
-                        <span>Seat: <span id="previewSeat2">A3</span></span>
-                        <span>Price: $<span id="previewPrice">15</span></span>
+                        <span>Seat: <span class="value" id="previewSeat2">A3</span></span>
+                        <span>Price: <span class="value">$<span id="previewPrice">15</span></span></span>
+                    </div>
+
+                    <div class="ticket-id">
+                        Ticket ID: <span id="previewTicketId">TKT-ABC123XYZ</span>
                     </div>
                 </div>
 
                 <div class="ticket-footer">
-                    <p>🎫 This ticket is generated electronically. Valid for single journey.</p>
-                    <p>🔒 Your information is secure and not stored on our servers.</p>
+                    <p>This is a preview of your ticket. Click "Generate PDF Ticket" to download.</p>
+                    <p>Ticket will be generated as a high-quality PDF file.</p>
                 </div>
             </div>
         </div>
@@ -395,6 +530,7 @@
         const seatNumberSelect = document.getElementById('seatNumber');
         const ticketPriceSelect = document.getElementById('ticketPrice');
         const qualityButtons = document.querySelectorAll('.quality-btn');
+        const colorButtons = document.querySelectorAll('.color-btn');
         const generateBtn = document.getElementById('generateBtn');
         const successMessage = document.getElementById('successMessage');
         
@@ -404,6 +540,22 @@
         const previewSeat = document.getElementById('previewSeat');
         const previewSeat2 = document.getElementById('previewSeat2');
         const previewPrice = document.getElementById('previewPrice');
+        const previewTicketId = document.getElementById('previewTicketId');
+        const previewTitle = document.getElementById('previewTitle');
+        
+        // Global variables
+        let selectedQuality = 'high';
+        let selectedColor = '#6a89cc';
+        
+        // Generate random ticket ID
+        function generateTicketId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = 'TKT-';
+            for (let i = 0; i < 9; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
         
         // Update preview in real-time
         function updatePreview() {
@@ -412,6 +564,33 @@
             previewSeat.textContent = seatNumberSelect.value;
             previewSeat2.textContent = seatNumberSelect.value;
             previewPrice.textContent = ticketPriceSelect.value;
+            previewTicketId.textContent = generateTicketId();
+            
+            // Update theme color
+            document.querySelector('.header').style.background = `linear-gradient(to right, ${selectedColor}, ${adjustColor(selectedColor, -20)})`;
+            document.querySelector('.generate-btn').style.background = `linear-gradient(to right, ${selectedColor}, ${adjustColor(selectedColor, -20)})`;
+            document.querySelector('.generate-btn').style.background = `linear-gradient(to right, ${selectedColor}, ${adjustColor(selectedColor, -20)})`;
+            previewTitle.style.color = selectedColor;
+        }
+        
+        // Helper function to adjust color brightness
+        function adjustColor(color, amount) {
+            let usePound = false;
+            if (color[0] === "#") {
+                color = color.slice(1);
+                usePound = true;
+            }
+            const num = parseInt(color, 16);
+            let r = (num >> 16) + amount;
+            if (r > 255) r = 255;
+            else if (r < 0) r = 0;
+            let b = ((num >> 8) & 0x00FF) + amount;
+            if (b > 255) b = 255;
+            else if (b < 0) b = 0;
+            let g = (num & 0x0000FF) + amount;
+            if (g > 255) g = 255;
+            else if (g < 0) g = 0;
+            return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16).padStart(6, '0');
         }
         
         // Event listeners for real-time preview
@@ -421,7 +600,6 @@
         ticketPriceSelect.addEventListener('change', updatePreview);
         
         // Quality selection
-        let selectedQuality = 'high';
         qualityButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 qualityButtons.forEach(b => b.classList.remove('active'));
@@ -430,11 +608,21 @@
             });
         });
         
+        // Color selection
+        colorButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                colorButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedColor = btn.getAttribute('data-color');
+                updatePreview();
+            });
+        });
+        
         // Generate PDF function
         async function generatePDF() {
             try {
                 // Show loading state
-                generateBtn.innerHTML = '⏳ Generating PDF...';
+                generateBtn.innerHTML = '<span>⏳</span> Generating...';
                 generateBtn.disabled = true;
                 
                 // Get ticket data
@@ -444,19 +632,18 @@
                     seat: seatNumberSelect.value,
                     price: ticketPriceSelect.value,
                     date: new Date().toLocaleDateString('en-US', {
-                        weekday: 'long',
                         year: 'numeric',
-                        month: 'long',
+                        month: 'short',
                         day: 'numeric'
                     }),
                     time: new Date().toLocaleTimeString('en-US', {
                         hour: '2-digit',
                         minute: '2-digit'
                     }),
-                    ticketId: 'TKT-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+                    ticketId: generateTicketId()
                 };
                 
-                // Create PDF based on quality setting
+                // Create PDF
                 const doc = new jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
@@ -464,90 +651,102 @@
                     compress: selectedQuality !== 'high'
                 });
                 
-                // Set quality
-                if (selectedQuality === 'high') {
-                    doc.setProperties({
-                        title: 'Bus Ticket - ' + ticketData.name,
-                        subject: 'Travel Ticket',
-                        author: 'Premium Travel Service'
-                    });
-                }
+                // Set document properties
+                doc.setProperties({
+                    title: `Bus Ticket - ${ticketData.name}`,
+                    subject: 'Travel Ticket',
+                    author: 'Ticket Generator',
+                    keywords: 'bus, ticket, travel'
+                });
                 
-                // Add background color
-                doc.setFillColor(41, 128, 185);
-                doc.rect(0, 0, doc.internal.pageSize.width, 30, 'F');
+                // Convert hex color to RGB
+                const hexToRgb = (hex) => {
+                    const r = parseInt(hex.slice(1, 3), 16);
+                    const g = parseInt(hex.slice(3, 5), 16);
+                    const b = parseInt(hex.slice(5, 7), 16);
+                    return [r, g, b];
+                };
                 
-                // Add header
-                doc.setFontSize(28);
+                const mainColor = hexToRgb(selectedColor);
+                const lightColor = hexToRgb(adjustColor(selectedColor, 40));
+                
+                // Add header with selected color
+                doc.setFillColor(mainColor[0], mainColor[1], mainColor[2]);
+                doc.rect(0, 0, doc.internal.pageSize.width, 25, 'F');
+                
+                // Add title
+                doc.setFontSize(22);
                 doc.setTextColor(255, 255, 255);
                 doc.setFont('helvetica', 'bold');
-                doc.text('BUS TICKET', doc.internal.pageSize.width / 2, 20, { align: 'center' });
+                doc.text('BUS TICKET', doc.internal.pageSize.width / 2, 15, { align: 'center' });
                 
-                doc.setFontSize(12);
-                doc.text('Premium Travel Service', doc.internal.pageSize.width / 2, 27, { align: 'center' });
+                doc.setFontSize(10);
+                doc.text('Premium Travel Service', doc.internal.pageSize.width / 2, 21, { align: 'center' });
                 
                 // Reset color for content
                 doc.setTextColor(0, 0, 0);
                 
                 // Add ticket content
-                doc.setFontSize(16);
-                doc.setFont('helvetica', 'bold');
-                doc.text('Passenger Information:', 15, 45);
-                
                 doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text('PASSENGER DETAILS', 15, 40);
+                
+                doc.setFontSize(10);
                 doc.setFont('helvetica', 'normal');
                 
                 const details = [
                     ['Passenger Name:', ticketData.name],
                     ['Mobile Number:', ticketData.mobile],
                     ['Seat Number:', ticketData.seat],
-                    ['Ticket Price:', '$' + ticketData.price],
-                    ['Date:', ticketData.date],
+                    ['Ticket Price:', `$${ticketData.price}`],
+                    ['Date of Issue:', ticketData.date],
                     ['Time:', ticketData.time],
                     ['Ticket ID:', ticketData.ticketId]
                 ];
                 
-                let yPos = 55;
+                let yPos = 50;
                 details.forEach(([label, value]) => {
                     doc.setFont('helvetica', 'bold');
                     doc.text(label, 20, yPos);
                     doc.setFont('helvetica', 'normal');
-                    doc.text(value, 70, yPos);
-                    yPos += 8;
+                    doc.text(value, 60, yPos);
+                    yPos += 7;
                 });
                 
-                // Add seat and price box
+                // Add seat and price highlight
                 yPos += 10;
-                doc.setFillColor(236, 240, 241);
-                doc.rect(15, yPos, doc.internal.pageSize.width - 30, 15, 'F');
-                doc.setFontSize(14);
+                doc.setFillColor(lightColor[0], lightColor[1], lightColor[2]);
+                doc.roundedRect(15, yPos, doc.internal.pageSize.width - 30, 12, 3, 3, 'F');
+                
+                doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
-                doc.text(`Seat: ${ticketData.seat}`, 25, yPos + 10);
-                doc.text(`Price: $${ticketData.price}`, doc.internal.pageSize.width - 40, yPos + 10, { align: 'right' });
+                doc.setTextColor(255, 255, 255);
+                doc.text(`Seat: ${ticketData.seat}`, 25, yPos + 8);
+                doc.text(`Price: $${ticketData.price}`, doc.internal.pageSize.width - 25, yPos + 8, { align: 'right' });
                 
-                // Add footer
-                yPos += 25;
-                doc.setFontSize(10);
-                doc.setFont('helvetica', 'normal');
+                // Add footer note
+                yPos += 20;
+                doc.setFontSize(8);
+                doc.setFont('helvetica', 'italic');
                 doc.setTextColor(100, 100, 100);
-                doc.text('This ticket is electronically generated and valid for single journey.', 
-                        doc.internal.pageSize.width / 2, yPos, { align: 'center' });
-                yPos += 5;
-                doc.text('Please present this ticket to the driver before boarding.', 
-                        doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+                doc.text('• This ticket is valid for single journey only', doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+                yPos += 4;
+                doc.text('• Please arrive at least 15 minutes before departure', doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+                yPos += 4;
+                doc.text('• Present this ticket to the driver before boarding', doc.internal.pageSize.width / 2, yPos, { align: 'center' });
                 
-                // Add decorative border
-                doc.setDrawColor(41, 128, 185);
+                // Add border
+                doc.setDrawColor(mainColor[0], mainColor[1], mainColor[2]);
                 doc.setLineWidth(0.5);
-                doc.rect(10, 10, doc.internal.pageSize.width - 20, doc.internal.pageSize.height - 20);
+                doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10);
                 
                 // Save PDF
-                const fileName = `Bus_Ticket_${ticketData.name.replace(/\s+/g, '_')}_${ticketData.ticketId}.pdf`;
+                const fileName = `Ticket_${ticketData.name.replace(/\s+/g, '_')}_${ticketData.ticketId}.pdf`;
                 doc.save(fileName);
                 
                 // Show success message
                 successMessage.style.display = 'block';
-                generateBtn.innerHTML = '📥 Generate & Download Ticket';
+                generateBtn.innerHTML = '<span>📄</span> Generate PDF Ticket';
                 generateBtn.disabled = false;
                 
                 // Hide success message after 3 seconds
@@ -555,10 +754,13 @@
                     successMessage.style.display = 'none';
                 }, 3000);
                 
+                // Update preview with new ticket ID
+                updatePreview();
+                
             } catch (error) {
                 console.error('PDF generation error:', error);
-                alert('Error generating PDF. Please try again.');
-                generateBtn.innerHTML = '📥 Generate & Download Ticket';
+                alert('There was an error generating the PDF. Please try again.');
+                generateBtn.innerHTML = '<span>📄</span> Generate PDF Ticket';
                 generateBtn.disabled = false;
             }
         }
@@ -569,25 +771,22 @@
         // Initialize preview
         updatePreview();
         
-        // Add some visual effects
+        // Add some interactive effects
         document.querySelectorAll('input, select').forEach(el => {
             el.addEventListener('focus', function() {
-                this.style.transform = 'scale(1.02)';
+                this.parentElement.style.transform = 'translateY(-2px)';
             });
             
             el.addEventListener('blur', function() {
-                this.style.transform = 'scale(1)';
+                this.parentElement.style.transform = 'translateY(0)';
             });
         });
         
-        // Add animation to ticket preview
-        const ticketPreview = document.getElementById('ticketPreview');
+        // Auto-generate ticket ID every 30 seconds
         setInterval(() => {
-            ticketPreview.style.boxShadow = '0 5px 25px rgba(52, 152, 219, 0.3)';
-            setTimeout(() => {
-                ticketPreview.style.boxShadow = 'inset 0 2px 10px rgba(0,0,0,0.08)';
-            }, 1000);
-        }, 5000);
+            if (!document.hasFocus()) return;
+            previewTicketId.textContent = generateTicketId();
+        }, 30000);
     </script>
 </body>
 </html>
